@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stoic System | MVP</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { 
+    background-color: #dbc997; 
+    color: #3e2f23; 
+    font-family: 'Inter', sans-serif; 
+    /* Quitamos overflow: hidden para que en móviles se pueda scrollear si la frase es larga */
+    overflow-x: hidden; 
+    min-height: 100vh;
+}
+
+h1, .serif { font-family: 'Playfair Display', serif; }
+
+/* Decoración de esquinas con efecto Papiro */
+.corner-img {
+    position: fixed;
+    bottom: -20px;
+    width: 390px; 
+    height: auto;
+    /* Filtros para integrar con el fondo */
+    filter: sepia(1) saturate(0.5) contrast(1.1);
+    mix-blend-mode: multiply; /* Este es el truco clave */
+    opacity: 0.5;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.corner-left { left: -50px; }
+.corner-right { right: -50px; transform: scaleX(-1); }
+
+/* RESPONSIVE: Ajustes para móviles */
+@media (max-width: 768px) {
+    .corner-img {
+        width: 180px; /* Más pequeñas en móvil */
+        opacity: 0.3;  /* Más sutiles para no molestar */
+    }
+    .corner-left { left: -30px; }
+    .corner-right { right: -30px; }
+    
+    #quote-text {
+        font-size: 1.875rem; /* text-3xl aprox */
+        line-height: 1.25;
+    }
+}
+
+.nav-blur {
+    backdrop-filter: blur(8px);
+    background: rgba(219, 201, 151, 0.7); /* Color del fondo con transparencia */
+}
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+
+    <nav class="nav-blur fixed top-0 w-full z-50 border-b border-[#3e2f23]/10 px-4 md:px-8 py-4 flex justify-between items-center">
+        <a href="/">
+    <div class="serif text-lg md:text-xl font-bold tracking-tighter">STOIC DAILY</div>
+    </a>
+    <div class="flex gap-4 md:gap-8 items-center">
+        <a href="/" class="text-[10px] md:text-xs uppercase tracking-[0.2em] font-semibold hover:opacity-50 transition-opacity">Inicio</a>
+        <button class="bg-[#3e2f23] text-[#f5f1e6] px-4 py-2 rounded text-[9px] md:text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition-colors">
+            App
+        </button>
+    </div>
+</nav>
+
+<main id="main-content" class="flex-grow flex flex-col items-center justify-center p-6 text-center opacity-0 mt-1">
+    <span class="serif italic text- text-xl tmd:text-base opacity-60 mb-2">Reflexión diaria</span>
+    
+    <div class="mb-6 w-full max-w-xs md:max-w-md">
+        <div class="flex items-center justify-center gap-4 mb-4">
+            <span id="day-label" class="uppercase tracking-[0.3em] text-[9px] md:text-[10px] font-bold opacity-60">0 / 365</span>
+        </div>
+        <div class="h-[1px] bg-[#3e2f23]/20 w-full"></div>
+    </div>
+
+    <section class="max-w-4xl w-full px-2">
+        <h1 id="quote-text" class="text-3xl md:text-5xl lg:text-6xl italic mb-8 md:mb-10 leading-tight serif">
+            "..."
+        </h1>
+        <p id="quote-author" class="text-base md:text-xl tracking-[0.15em] uppercase opacity-70 font-light">
+            — Cargando —
+        </p>
+    </section>
+
+    <div class="mt-1 md:mt-16">
+        <button class="group flex flex-col items-center gap-3">
+            <span class="text-[10px] uppercase tracking-[0.4em] opacity-50 group-hover:opacity-100 transition-opacity">Reflexionar</span>
+            <div class="w-8 h-8 border border-[#3e2f23]/30 rounded-full flex items-center justify-center group-hover:bg-[#3e2f23]/5 transition-all">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+            </div>
+        </button>
+    </div>
+</main>
+    <img src="vecteezy_ai-generated-gypsum-statue-plaster-copy-isolated-on_38038862.png" alt="" class="corner-img corner-left">
+    <img src="vecteezy_ai-generated-gypsum-statue-plaster-copy-isolated-on_38038862.png" alt="" class="corner-img corner-right">
+
+ <script src="index.js"></script>
+</body>
+</html>
